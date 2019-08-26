@@ -23,7 +23,7 @@ const sessionConfig = {
         httpOnly: true
     },
     store: new SessionStore({
-        knex: require('../database/dbConfig'),
+        knex: require('../data/dbConfig'),
         tablename: 'sessions',
         sidfieldname: 'sid',
         createtable: true,
