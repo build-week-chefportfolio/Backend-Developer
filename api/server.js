@@ -30,7 +30,7 @@ const sessionConfig = {
         clearInterval: 70 * 70 * 1000
     })
 };
-
+server.use(cors({origin: 'http://localhost:3000'}));
 
 server.use(session(sessionConfig));
 server.use(helmet());

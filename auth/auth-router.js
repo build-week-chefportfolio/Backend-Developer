@@ -3,6 +3,14 @@ const bcrypt = require('bcryptjs');
 
 const Users = require('../users/users-model.js');
 const restricted = require('./authenticate-middleware');
+router.get('/', function(req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type'); // If needed
+    res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+    res.send('cors problem fixed:)');
+});
 
 router.post('/register', (req, res) => {
   let user = req.body;

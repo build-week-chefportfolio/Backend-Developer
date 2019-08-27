@@ -15,7 +15,7 @@ exports.up = function(knex) {
         tbl.boolean('relocate').defaultTo(false)
         tbl.string('location', 255).notNullable()
         tbl.string('state', 255).notNullable()
-        tbl.string('contactpref:phone/email', 10).notNullable()
+        tbl.string('contactpref', 10).notNullable()
         tbl.string('telephone/email', 255).notNullable()
         tbl.boolean('public').defaultTo(true)
         tbl.integer('users_id')
