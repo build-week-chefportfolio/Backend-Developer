@@ -4,7 +4,6 @@ const bcrypt = require('bcryptjs');
 const Users = require('../users/users-model.js');
 const restricted = require('./authenticate-middleware');
 
-
 router.post('/register', (req, res) => {
   let user = req.body;
 
