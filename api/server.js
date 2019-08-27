@@ -1,45 +1,24 @@
-const express = require('express');
-const cors = require('cors');
-const helmet = require('helmet');
+const express = require("express");
+const helmet = require("helmet");
+const cors = require("cors");
 
-const session = require('express-session');
-const SessionStore = require('connect-session-knex')(session);
-
-const authenticate = require('../auth/authenticate-middleware.js');
-const authRouter = require('../auth/auth-router.js');
-const usersRouter = require('../users/users-router.js');
+const authRouter = require("../auth/auth-router.js");
+const postsRouter = require("../routes/posts-router.js");
 
 const server = express();
 
 
-const sessionConfig = {
-    name: 'pandapandapanda',
-    secret: 'keep it simple, stupid',
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        maxAge: 70 * 70 * 1000,
-        secure: false,
-        httpOnly: true
-    },
-    store: new SessionStore({
-        knex: require('../data/dbConfig'),
-        tablename: 'sessions',
-        sidfieldname: 'sid',
-        createtable: true,
-        clearInterval: 70 * 70 * 1000
-    })
-};
-server.use(cors({origin: 'http://localhost:3000'}));
 
-server.use(session(sessionConfig));
+
 server.use(helmet());
-server.use(cors());
 server.use(express.json());
-server.get('/', (req, res) => {
-    res.status(200).json({ api: 'running' });
+server.use(cors());
+
+server.use("/api/auth", authRouter);
+server.use("/api/posts", postsRouter);
+
+server.get("/", (req, res) => {
+  res.send("WE ARE UP!");
 });
 
-server.use('/api/auth', authRouter);
-server.use('/api/users', usersRouter);
 module.exports = server;
