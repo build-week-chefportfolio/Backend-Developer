@@ -31,16 +31,23 @@ router.get('/:id', async (req, res, next) => {
     }
 });
 
-router.post('/', async (req, res, next) => {
-    try {
-        const [addedChef] = await Chefs.addChef(req.body);
-        addChef.completed = Boolean(addedChef.completed);
-        res.status(201).json(addedChef);
-    } catch (err) {
-        next({err: err,
-            stat: 500,
-            message: 'Sorry, there was an error adding the chef.',
-        });
+router.post('/add', (req, res) => {
+    const chef = req.body;
+
+    if (!chef) {
+        res.status(400).json({ message: "missing post data" });
+    } else {
+        Chefs.addChef(chef)
+            .then(chefUser => {
+                if (chefUser) {
+                    console.log(chefUser)
+                    res.status(201).json(chef)
+                }
+            })
+            .catch(err => {
+                err = { error: "There was an error while saving the post to the database" };
+                res.status(500).json(err)
+            })
     }
 });
 module.exports = router;
