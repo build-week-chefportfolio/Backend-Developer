@@ -10,11 +10,17 @@ function getAll() {
     return db('chefs');
 }
 
-function getById(id) {
-    return db('chefs')
-        .where({id})
-        .first();
- }
+async function getById(id) {
+    return [
+        await db('chefs')
+            .where({ id })
+            .first(),
+        await db('chefs_recipe as a')
+            .where('chefs_id', id)
+            .join('recipe as b', 'a.recipe_id', 'b.id')
+            .select('b.id', 'b.RecipeName', 'b.prepTime', 'b.description'),
+    ];
+}
 
 function addChef(chef) {
     return db('chefs')

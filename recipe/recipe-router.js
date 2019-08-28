@@ -25,11 +25,7 @@ router.get('/:id', async (req, res, next) => {
         recipe.chefs = chefs;
         res.status(200).json(recipe);
     } catch (err) {
-        next({
-            err: err,
-            stat: 500,
-            message: 'Sorry, there was an error accessing the recipe.',
-        });
+        res.status(500).json({error: "that recipe doesn't exist"})
     }
 });
 
@@ -45,4 +41,17 @@ router.post('/add', async (req, res, next) => {
         });
     }
 });
+router.delete('/delete/:id', async (req, res) => {
+    try {
+        const recipe = await Recipe.removeRecipe(req.params.id);
+            console.log(recipe)
+        res.status(200).json({
+            message: 'succesfully deleted'
+        })
+    } catch (err) {
+        res.status(500).json({
+            message: 'unable to delete the posts'
+        })
+    }
+})
 module.exports = router;
