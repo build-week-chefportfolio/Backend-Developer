@@ -33,7 +33,7 @@ router.get('/:id', async (req, res, next) => {
     }
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/add', async (req, res, next) => {
     try {
         const [addedRecipe] = await Recipe.addRecipe(req.body);
         res.status(201).json(addedRecipe);
