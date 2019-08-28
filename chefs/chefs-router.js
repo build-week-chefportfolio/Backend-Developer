@@ -11,7 +11,7 @@ router.get('/', async (req, res, next) => {
     } catch (err) {
         next({err: err,
             stat: 500,
-            message: 'Sorry, there was an error accessing list of tasks.',
+            message: 'Sorry, there was an error accessing list of chefs.',
         });
     }
 });
@@ -21,12 +21,12 @@ router.get('/:id', async (req, res, next) => {
         const [chefs, recipes] = await Chefs.getById(
             req.params.id
         );
-        chef.recipe = recipes;
+        chefs.recipe = recipes;
         res.status(200).json(chefs);
     } catch (err) {
         next({err: err,
             stat: 500,
-            message: 'Sorry, there was an error accessing the task.',
+            message: 'Sorry, there was an error accessing the chef.',
         });
     }
 });
@@ -39,7 +39,7 @@ router.post('/', async (req, res, next) => {
     } catch (err) {
         next({err: err,
             stat: 500,
-            message: 'Sorry, there was an error adding the task.',
+            message: 'Sorry, there was an error adding the chef.',
         });
     }
 });

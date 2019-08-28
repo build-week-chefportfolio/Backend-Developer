@@ -22,8 +22,8 @@ async function getById(id) {
     ];
 }
 
-function addChef(nacho) {
+function addChef(chef) {
     return db('chefs')
-        .insert(nacho)
+        .insert(chef)
         .then(([id]) => getById(id));
 }
