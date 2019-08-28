@@ -38,12 +38,22 @@ exports.seed = function (knex) {
           RecipeName: 'New York pizza',
           prepTime: '20 min',
           description: 'New York original pizza',
+          course: 2,
+          cookTime: 50,
+          serves: 4,
+          ingredients: 'New York Water',
+          preparation: 'cook eeet'
         },
         {
           id: 7,
           RecipeName: 'Japanese pizza',
           prepTime: '35 min',
           description: 'Japanese original pizza',
+          course: 3,
+          cookTime: 40,
+          serves: 2,
+          ingredients: 'New York Water',
+          preparation: 'cook eeet'
         },
         {
           id: 8,

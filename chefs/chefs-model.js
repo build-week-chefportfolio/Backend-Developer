@@ -4,6 +4,8 @@ module.exports = {
     getAll,
     getById,
     addChef,
+    removechef
+
 };
 
 function getAll() {
@@ -30,3 +32,9 @@ function addChef(chef) {
         
     });
 }
+
+function removechef(id) {
+    return db('chefs')
+      .where('id', id)
+      .del();
+  }

@@ -50,6 +50,19 @@ router.post('/add', (req, res) => {
             })
     }
 });
+router.delete('/delete/:id', async (req, res) => {
+    try {
+        const chef = await Chefs.removechef(req.params.id);
+            console.log(chef)
+        res.status(200).json({
+            message: 'succesfully deleted'
+        })
+    } catch (err) {
+        res.status(500).json({
+            message: 'unable to delete the chef'
+        })
+    }
+})
 module.exports = router;
 
 module.exports = router;
