@@ -35,7 +35,7 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     try {
-        const [addedRecipe] = await Recipe.addContext(req.body);
+        const [addedRecipe] = await Recipe.addRecipe(req.body);
         res.status(201).json(addedRecipe);
     } catch (err) {
         next({
