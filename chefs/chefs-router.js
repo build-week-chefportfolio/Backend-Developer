@@ -1,6 +1,6 @@
 const express = require('express');
 
-const Chefs = require('./chefs-Model');
+const Chefs = require('./chefs-model');
 
 const router = express.Router();
 
