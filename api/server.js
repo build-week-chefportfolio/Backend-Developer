@@ -7,6 +7,7 @@ const session = require('express-session');
 const SessionStore = require('connect-session-knex')(session);
 
 const authenticate = require('../auth/authenticate-middleware.js');
+const chefsRouter = require('../chefs/chefs-router.js')
 const authRouter = require('../auth/auth-router.js');
 const usersRouter = require('../users/users-router.js');
 
@@ -39,7 +40,7 @@ server.use(express.json());
 server.get('/', (req, res) => {
     res.status(200).json({ api: 'running' });
 });
-
+server.use('/api/chefs', chefsRouter);
 server.use('/api/auth', authRouter);
 server.use('/api/users', usersRouter);
 module.exports = server;
