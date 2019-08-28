@@ -11,7 +11,7 @@ router.get('/', async (req, res, next) => {
         next({
             err: err,
             stat: 500,
-            message: 'Sorry, there was an error accessing the list of contexts.',
+            message: 'Sorry, there was an error accessing the list of recipes.',
         });
     }
 });
@@ -28,7 +28,7 @@ router.get('/:id', async (req, res, next) => {
         next({
             err: err,
             stat: 500,
-            message: 'Sorry, there was an error accessing the context.',
+            message: 'Sorry, there was an error accessing the recipe.',
         });
     }
 });
@@ -41,7 +41,7 @@ router.post('/', async (req, res, next) => {
         next({
             err: err,
             stat: 500,
-            message: 'Sorry, there was an error accessing the context.',
+            message: 'Sorry, there was an error accessing the recipe.',
         });
     }
 });
