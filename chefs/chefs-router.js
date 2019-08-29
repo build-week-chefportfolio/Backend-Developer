@@ -45,11 +45,28 @@ router.post('/add', (req, res) => {
                 }
             })
             .catch(err => {
-                err = { error: "There was an error while saving the post to the database" };
+                err = { error: "There was an error while saving the chef" };
                 res.status(500).json(err)
             })
     }
 });
+router.put('/update/:id', async (req, res) => {
+    try {
+        const chef = await Chefs.updateChef(req.params.id, req.body);
+        console.log(chef)
+        if (chef) {
+            res.status(200).json(chef);
+        } else {
+            res.status(404).json({
+                message: 'The post could not be found'
+            })
+        }
+    } catch (e) {
+        res.status(500).json({
+            message: "could not update the post"
+        })
+    }
+})
 router.delete('/delete/:id', async (req, res) => {
     try {
         const chef = await Chefs.removechef(req.params.id);

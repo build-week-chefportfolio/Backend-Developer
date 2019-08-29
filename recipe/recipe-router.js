@@ -41,6 +41,23 @@ router.post('/add', async (req, res, next) => {
         });
     }
 });
+router.put('/update/:id', async (req, res) => {
+    try {
+        const recipe = await Recipe.updateRecipe(req.params.id, req.body);
+        console.log(recipe)
+        if (recipe) {
+            res.status(200).json(recipe);
+        } else {
+            res.status(404).json({
+                message: 'The post could not be found'
+            })
+        }
+    } catch (e) {
+        res.status(500).json({
+            message: "could not update the post"
+        })
+    }
+})
 router.delete('/delete/:id', async (req, res) => {
     try {
         const recipe = await Recipe.removeRecipe(req.params.id);

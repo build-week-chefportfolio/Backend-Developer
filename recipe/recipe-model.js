@@ -5,6 +5,7 @@ module.exports = {
     getAll,
     getById,
     addRecipe,
+    updateRecipe,
     removeRecipe
 };
 
@@ -29,6 +30,11 @@ function addRecipe(chef) {
         .insert(chef)
         .then(([id]) => getById(id));
 }
+function updateRecipe(id, changes) {
+    return db('recipe')
+      .where({ id })
+      .update(changes);
+  }
 function removeRecipe(id) {
     return db('recipe')
       .where('id', id)

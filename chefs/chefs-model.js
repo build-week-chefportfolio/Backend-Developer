@@ -4,7 +4,8 @@ module.exports = {
     getAll,
     getById,
     addChef,
-    removechef
+    removechef,
+    updateChef
 
 };
 
@@ -23,6 +24,11 @@ async function getById(id) {
             .select('b.id', 'b.RecipeName', 'b.prepTime', 'b.description'),
     ];
 }
+function updateChef(id, changes) {
+    return db('chefs')
+      .where({ id })
+      .update(changes);
+  }
 
 function addChef(chef) {
     return db('chefs')

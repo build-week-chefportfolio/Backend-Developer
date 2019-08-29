@@ -30,7 +30,7 @@ describe('users model', () => {
                 password : 'eucaliptis'
 			});
 			const users = await db('users');
-			expect(users).toHaveLength(1);
+			expect(users).toHaveLength(2);
 		});
     });
 	describe('login', () => {
