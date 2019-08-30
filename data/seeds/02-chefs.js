@@ -18,7 +18,7 @@ exports.seed = function (knex) {
         },
         {
           id: 2,
-          FirstNameLastName: 'Sascha Miller',
+          FirstNameLastName: 'Sascha FirstNameLastName',
           yearsexp: 3,
           relocate: false,
           location: 'Kansas City',
